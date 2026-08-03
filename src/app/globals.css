@@ -1,19 +1,71 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* ==========================================================
+   PREMIUM ROSE THEME
+========================================================== */
+
+:root {
+  --bg: #fff8fa;
+  --surface: rgba(255, 255, 255, 0.72);
+  --surface-solid: #ffffff;
+
+  --primary: #c00645;
+  --secondary: #d05d65;
+  --accent: #e1848c;
+  --soft: #eaa8ac;
+  --card: #fcecef;
+
+  --heading: #31121d;
+  --text: #654852;
+  --muted: #9b7a84;
+
+  --border: rgba(192, 6, 69, 0.12);
+
+  --shadow-sm: 0 10px 25px rgba(192, 6, 69, 0.08);
+  --shadow-md: 0 20px 45px rgba(192, 6, 69, 0.12);
+  --shadow-lg: 0 35px 80px rgba(192, 6, 69, 0.18);
+
+  --gradient-primary: linear-gradient(
+    135deg,
+    #c00645 0%,
+    #d05d65 55%,
+    #e1848c 100%
+  );
+
+  --gradient-soft: linear-gradient(
+    180deg,
+    #fff8fa 0%,
+    #fdf3f6 100%
+  );
+}
+
+/* ==========================================================
+   BASE
+========================================================== */
+
 @layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
   html {
     scroll-behavior: smooth;
   }
 
   body {
-    @apply antialiased;
-    background: #faf8f5;
-    color: #24211f;
-    font-family: "DM Sans", sans-serif;
+    background: var(--gradient-soft);
+    color: var(--text);
+    font-family: "Outfit", sans-serif;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    min-height: 100vh;
   }
 
   h1,
@@ -22,262 +74,667 @@
   h4,
   h5,
   h6 {
-    font-family: "Manrope", sans-serif;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    color: var(--heading);
+    letter-spacing: -0.03em;
+    font-weight: 700;
+  }
+
+  p {
+    line-height: 1.75;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+
+  button,
+  input,
+  textarea,
+  select {
+    font-family: inherit;
   }
 
   ::selection {
-    background: rgba(196, 70, 20, 0.2);
-    color: #8f2f0a;
+    background: rgba(192, 6, 69, 0.18);
+    color: var(--primary);
   }
 }
 
+/* ==========================================================
+   PREMIUM BACKGROUND GLOWS
+========================================================== */
+
+body::before {
+  content: "";
+  position: fixed;
+  width: 520px;
+  height: 520px;
+  top: -180px;
+  left: -180px;
+  border-radius: 50%;
+  background: rgba(225, 132, 140, 0.22);
+  filter: blur(130px);
+  pointer-events: none;
+  z-index: -2;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  width: 520px;
+  height: 520px;
+  right: -180px;
+  bottom: -180px;
+  border-radius: 50%;
+  background: rgba(192, 6, 69, 0.14);
+  filter: blur(130px);
+  pointer-events: none;
+  z-index: -2;
+}
+/* ==========================================================
+   COMPONENTS
+========================================================== */
+
 @layer components {
-  /* ================================
-     PREMIUM PRIMARY BUTTON
-  ================================= */
+
+  /* ===============================
+      PRIMARY BUTTON
+  =============================== */
 
   .btn-primary {
-    @apply inline-flex items-center justify-center rounded-xl px-5 py-2.5 text-sm font-semibold text-white transition-all duration-300;
-    background: linear-gradient(135deg, #c84a18, #a83b0b);
-    box-shadow:
-      0 8px 20px rgba(168, 59, 11, 0.18),
-      inset 0 1px 0 rgba(255, 255, 255, 0.18);
+    @apply inline-flex items-center justify-center rounded-2xl px-6 py-3.5 text-sm font-semibold text-white transition-all duration-300;
+
+    background: var(--gradient-primary);
+    box-shadow: var(--shadow-md);
   }
 
   .btn-primary:hover {
-    transform: translateY(-2px);
-    background: linear-gradient(135deg, #d85a22, #8f2f0a);
-    box-shadow:
-      0 14px 28px rgba(168, 59, 11, 0.25),
-      0 0 20px rgba(244, 119, 33, 0.15);
-  }
-
-  .btn-primary:active {
-    transform: translateY(0);
-  }
-
-  .btn-primary:focus-visible {
-    outline: none;
-    box-shadow:
-      0 0 0 3px rgba(244, 119, 33, 0.25),
-      0 8px 20px rgba(168, 59, 11, 0.18);
-  }
-
-  .btn-primary:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-    transform: none;
-  }
-
-  /* ================================
-     SECONDARY BUTTON
-  ================================= */
-
-  .btn-secondary {
-    @apply inline-flex items-center justify-center rounded-xl px-5 py-2.5 text-sm font-semibold transition-all duration-300;
-    color: #8f2f0a;
-    background: rgba(255, 255, 255, 0.7);
-    border: 1px solid rgba(168, 59, 11, 0.2);
-    box-shadow: 0 6px 18px rgba(58, 32, 18, 0.05);
-    backdrop-filter: blur(12px);
-  }
-
-  .btn-secondary:hover {
-    transform: translateY(-2px);
-    background: rgba(255, 255, 255, 0.95);
-    border-color: rgba(168, 59, 11, 0.4);
-    box-shadow: 0 12px 24px rgba(58, 32, 18, 0.1);
-  }
-
-  .btn-secondary:focus-visible {
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(244, 119, 33, 0.2);
-  }
-
-  /* ================================
-     GLASS CARD
-  ================================= */
-
-  .card {
-    @apply rounded-2xl transition-all duration-300;
-    background: rgba(255, 255, 255, 0.72);
-    border: 1px solid rgba(168, 59, 11, 0.1);
-    box-shadow:
-      0 10px 35px rgba(64, 32, 16, 0.06),
-      inset 0 1px 0 rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-  }
-
-  .card:hover {
     transform: translateY(-4px);
-    border-color: rgba(168, 59, 11, 0.2);
     box-shadow:
-      0 18px 45px rgba(64, 32, 16, 0.1),
-      0 0 30px rgba(244, 119, 33, 0.06);
+      0 24px 60px rgba(192,6,69,.22),
+      0 0 40px rgba(225,132,140,.20);
   }
 
-  /* ================================
-     INPUT FIELDS
-  ================================= */
+  .btn-primary:active{
+    transform:translateY(0);
+  }
 
-  .input-field {
-    @apply w-full rounded-xl px-4 py-3 text-sm transition-all duration-300;
-    background: rgba(255, 255, 255, 0.75);
-    color: #24211f;
-    border: 1px solid rgba(110, 63, 35, 0.16);
+  .btn-primary:disabled{
+    opacity:.5;
+    cursor:not-allowed;
+  }
+
+
+  /* ===============================
+      SECONDARY BUTTON
+  =============================== */
+
+  .btn-secondary{
+
+    @apply inline-flex items-center justify-center rounded-2xl px-6 py-3.5 text-sm font-semibold transition-all duration-300;
+
+    background:rgba(255,255,255,.78);
+
+    color:var(--primary);
+
+    border:1px solid rgba(192,6,69,.12);
+
+    backdrop-filter:blur(18px);
+
+    box-shadow:0 10px 25px rgba(0,0,0,.04);
+
+  }
+
+  .btn-secondary:hover{
+
+    transform:translateY(-4px);
+
+    background:#fff;
+
+    border-color:rgba(192,6,69,.22);
+
+    box-shadow:0 20px 45px rgba(192,6,69,.10);
+
+  }
+
+
+
+  /* ===============================
+      PREMIUM CARD
+  =============================== */
+
+  .card{
+
+    @apply rounded-[28px] transition-all duration-300;
+
+    background:rgba(255,255,255,.74);
+
+    border:1px solid rgba(255,255,255,.45);
+
+    backdrop-filter:blur(22px);
+
+    -webkit-backdrop-filter:blur(22px);
+
     box-shadow:
-      inset 0 1px 2px rgba(60, 30, 10, 0.02),
-      0 4px 15px rgba(60, 30, 10, 0.025);
-    backdrop-filter: blur(10px);
+      var(--shadow-sm),
+      inset 0 1px 0 rgba(255,255,255,.8);
+
   }
 
-  .input-field::placeholder {
-    color: #9a918a;
-  }
+  .card:hover{
 
-  .input-field:hover {
-    border-color: rgba(168, 59, 11, 0.28);
-  }
+    transform:translateY(-8px);
 
-  .input-field:focus {
-    outline: none;
-    border-color: #c84a18;
     box-shadow:
-      0 0 0 3px rgba(244, 119, 33, 0.12),
-      0 8px 20px rgba(168, 59, 11, 0.06);
+      var(--shadow-lg),
+      inset 0 1px 0 rgba(255,255,255,.9);
+
   }
 
-  /* ================================
-     GLASS PANEL
-  ================================= */
 
-  .glass-panel {
-    background: rgba(255, 255, 255, 0.6);
-    border: 1px solid rgba(168, 59, 11, 0.1);
+
+  /* ===============================
+      GLASS PANEL
+  =============================== */
+
+  .glass-panel{
+
+    background:rgba(255,255,255,.62);
+
+    border:1px solid rgba(255,255,255,.45);
+
+    backdrop-filter:blur(26px);
+
+    -webkit-backdrop-filter:blur(26px);
+
     box-shadow:
-      0 20px 60px rgba(64, 32, 16, 0.07),
-      inset 0 1px 0 rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(22px);
-    -webkit-backdrop-filter: blur(22px);
+      var(--shadow-md),
+      inset 0 1px 0 rgba(255,255,255,.75);
+
   }
 
-  /* ================================
-     ORANGE GLOW
-  ================================= */
 
-  .orange-glow {
+
+  /* ===============================
+      INPUTS
+  =============================== */
+
+  .input-field{
+
+    @apply w-full rounded-2xl px-5 py-3.5 text-sm transition-all duration-300;
+
+    background:rgba(255,255,255,.82);
+
+    border:1px solid rgba(192,6,69,.10);
+
+    color:var(--heading);
+
+    backdrop-filter:blur(14px);
+
+  }
+
+  .input-field::placeholder{
+
+    color:var(--muted);
+
+  }
+
+  .input-field:hover{
+
+    border-color:rgba(192,6,69,.22);
+
+  }
+
+  .input-field:focus{
+
+    outline:none;
+
+    border-color:var(--primary);
+
     box-shadow:
-      0 0 50px rgba(244, 119, 33, 0.12),
-      0 0 100px rgba(168, 59, 11, 0.06);
+      0 0 0 4px rgba(192,6,69,.08),
+      0 18px 35px rgba(192,6,69,.08);
+
   }
 
-  /* ================================
-     GRADIENT TEXT
-  ================================= */
 
-  .gradient-text {
-    background: linear-gradient(
+
+  /* ===============================
+      PREMIUM BADGE
+  =============================== */
+
+  .badge{
+
+    @apply inline-flex items-center rounded-full px-4 py-2 text-xs font-semibold;
+
+    background:rgba(255,255,255,.72);
+
+    color:var(--primary);
+
+    border:1px solid rgba(192,6,69,.10);
+
+    backdrop-filter:blur(18px);
+
+  }
+
+
+
+  /* ===============================
+      GRADIENT TEXT
+  =============================== */
+
+  .gradient-text{
+
+    background:linear-gradient(
       135deg,
-      #8f2f0a 0%,
-      #c84a18 45%,
-      #f47721 100%
+      #c00645,
+      #d05d65,
+      #e1848c
     );
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
-}
 
-/* =====================================
-   FLOATING ANIMATION
-===================================== */
+    -webkit-background-clip:text;
+    background-clip:text;
+
+    color:transparent;
+
+  }
+
+}
+/* ==========================================================
+   PREMIUM ANIMATIONS
+========================================================== */
 
 @keyframes float {
-  0%,
-  100% {
-    transform: translateY(0px);
+  0%,100%{
+    transform:translateY(0);
   }
-
-  50% {
-    transform: translateY(-12px);
+  50%{
+    transform:translateY(-14px);
   }
 }
 
-.animate-float {
-  animation: float 6s ease-in-out infinite;
+.animate-float{
+  animation:float 7s ease-in-out infinite;
 }
 
-/* =====================================
-   SOFT PULSE
-===================================== */
 
-@keyframes softPulse {
-  0%,
-  100% {
-    opacity: 0.45;
-    transform: scale(1);
+@keyframes floatSlow{
+  0%,100%{
+    transform:translateY(0) rotate(0deg);
   }
-
-  50% {
-    opacity: 0.7;
-    transform: scale(1.05);
+  50%{
+    transform:translateY(-24px) rotate(6deg);
   }
 }
 
-.animate-soft-pulse {
-  animation: softPulse 5s ease-in-out infinite;
+.animate-float-slow{
+  animation:floatSlow 10s ease-in-out infinite;
 }
 
-/* =====================================
-   FADE UP
-===================================== */
 
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
+@keyframes fadeUp{
+
+  from{
+    opacity:0;
+    transform:translateY(35px);
   }
 
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  to{
+    opacity:1;
+    transform:translateY(0);
   }
+
 }
 
-.animate-fade-up {
-  animation: fadeUp 0.7s ease-out both;
+.animate-fade-up{
+
+  animation:fadeUp .8s ease both;
+
 }
 
-/* =====================================
-   FLOATING ORANGE BLOBS
-===================================== */
 
-.hero-blob {
-  position: absolute;
-  border-radius: 9999px;
-  filter: blur(80px);
-  pointer-events: none;
-  opacity: 0.18;
+@keyframes pulseGlow{
+
+  0%,100%{
+
+    opacity:.55;
+
+    transform:scale(1);
+
+  }
+
+  50%{
+
+    opacity:1;
+
+    transform:scale(1.08);
+
+  }
+
 }
 
-/* =====================================
-   CUSTOM SCROLLBAR
-===================================== */
+.animate-soft-pulse{
 
-::-webkit-scrollbar {
-  width: 9px;
+  animation:pulseGlow 5s ease-in-out infinite;
+
 }
 
-::-webkit-scrollbar-track {
-  background: #f5f1ec;
+
+
+/* ==========================================================
+   HERO BLOBS
+========================================================== */
+
+.hero-blob{
+
+  position:absolute;
+
+  border-radius:999px;
+
+  filter:blur(90px);
+
+  opacity:.22;
+
+  pointer-events:none;
+
 }
 
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(#c84a18, #8f2f0a);
-  border-radius: 999px;
+
+
+.hero-blob.one{
+
+  background:#c00645;
+
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #8f2f0a;
+.hero-blob.two{
+
+  background:#e1848c;
+
+}
+
+.hero-blob.three{
+
+  background:#d05d65;
+
+}
+
+
+
+/* ==========================================================
+   PREMIUM GRID
+========================================================== */
+
+.grid-overlay{
+
+  position:absolute;
+
+  inset:0;
+
+  background-image:
+
+      linear-gradient(rgba(192,6,69,.04) 1px,transparent 1px),
+
+      linear-gradient(90deg,rgba(192,6,69,.04) 1px,transparent 1px);
+
+  background-size:42px 42px;
+
+  pointer-events:none;
+
+}
+
+
+
+/* ==========================================================
+   PREMIUM SHADOWS
+========================================================== */
+
+.shadow-premium{
+
+  box-shadow:
+
+      0 25px 70px rgba(192,6,69,.12);
+
+}
+
+.shadow-soft{
+
+  box-shadow:
+
+      0 12px 30px rgba(0,0,0,.06);
+
+}
+
+
+
+/* ==========================================================
+   HOVER EFFECT
+========================================================== */
+
+.hover-lift{
+
+  transition:all .35s ease;
+
+}
+
+.hover-lift:hover{
+
+  transform:translateY(-8px);
+
+}
+
+
+
+/* ==========================================================
+   GLASS BORDER
+========================================================== */
+
+.glass-border{
+
+  border:1px solid rgba(255,255,255,.45);
+
+}
+
+
+
+/* ==========================================================
+   PREMIUM SCROLLBAR
+========================================================== */
+
+::-webkit-scrollbar{
+
+  width:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+  background:#fff4f7;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+  background:linear-gradient(
+      180deg,
+      #c00645,
+      #e1848c
+  );
+
+  border-radius:999px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+  background:#c00645;
+
+}
+/* ==========================================================
+   PREMIUM UTILITIES
+========================================================== */
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.section-padding {
+  @apply px-4 py-16 sm:px-6 lg:px-8 lg:py-24;
+}
+
+.container-premium {
+  @apply mx-auto max-w-7xl;
+}
+
+.blur-bg {
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+}
+
+.bg-premium {
+  background: linear-gradient(
+    180deg,
+    #fff8fa 0%,
+    #fdf3f6 45%,
+    #ffffff 100%
+  );
+}
+
+.bg-premium-card {
+  background: rgba(255,255,255,.78);
+}
+
+.border-premium {
+  border: 1px solid rgba(192,6,69,.12);
+}
+
+.transition-premium {
+  transition: all .35s ease;
+}
+
+/* ==========================================================
+   IMAGE EFFECTS
+========================================================== */
+
+.image-hover {
+  overflow: hidden;
+  border-radius: 24px;
+}
+
+.image-hover img {
+  transition: transform .6s ease;
+}
+
+.image-hover:hover img {
+  transform: scale(1.06);
+}
+
+/* ==========================================================
+   ICON BOX
+========================================================== */
+
+.icon-box {
+  width: 58px;
+  height: 58px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:18px;
+
+  background:var(--gradient-primary);
+
+  color:#fff;
+
+  box-shadow:0 18px 40px rgba(192,6,69,.20);
+}
+
+/* ==========================================================
+   DIVIDER
+========================================================== */
+
+.divider-gradient{
+  height:1px;
+  width:100%;
+
+  background:linear-gradient(
+      90deg,
+      transparent,
+      rgba(192,6,69,.18),
+      transparent
+  );
+}
+
+/* ==========================================================
+   PREMIUM RING
+========================================================== */
+
+.ring-premium{
+  position:absolute;
+  border-radius:999px;
+  border:1px solid rgba(192,6,69,.08);
+}
+
+/* ==========================================================
+   GLASS OVERLAY
+========================================================== */
+
+.glass-overlay{
+  position:absolute;
+  inset:0;
+
+  background:linear-gradient(
+      135deg,
+      rgba(255,255,255,.35),
+      rgba(255,255,255,.05)
+  );
+
+  pointer-events:none;
+}
+
+/* ==========================================================
+   REMOVE TAP HIGHLIGHT
+========================================================== */
+
+*{
+  -webkit-tap-highlight-color:transparent;
+}
+
+/* ==========================================================
+   FOCUS
+========================================================== */
+
+button:focus-visible,
+a:focus-visible{
+  outline:none;
+
+  box-shadow:
+      0 0 0 4px rgba(192,6,69,.12);
+}
+
+/* ==========================================================
+   SMOOTH TRANSITIONS
+========================================================== */
+
+a,
+button,
+input,
+textarea,
+.card,
+.btn-primary,
+.btn-secondary{
+  transition:
+      background .3s ease,
+      color .3s ease,
+      border-color .3s ease,
+      transform .3s ease,
+      box-shadow .3s ease;
 }

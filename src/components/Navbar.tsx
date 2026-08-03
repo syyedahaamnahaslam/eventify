@@ -21,74 +21,103 @@ export default function Navbar() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 px-3 pt-3 sm:px-5">
+    <header className="sticky top-0 z-50 px-4 pt-4">
       <div className="mx-auto max-w-7xl">
-        <div className="relative rounded-2xl border border-orange-900/10 bg-white/75 shadow-[0_10px_40px_rgba(80,35,10,0.08)] backdrop-blur-xl backdrop-saturate-150">
-          <div className="flex h-[70px] items-center justify-between px-4 sm:px-6 lg:px-7">
+
+        {/* Floating Glass Navbar */}
+
+        <div className="relative overflow-hidden rounded-[26px] border border-white/40 bg-white/65 shadow-[0_20px_70px_rgba(192,6,69,0.10)] backdrop-blur-2xl">
+
+          {/* Glow */}
+
+          <div className="absolute -left-20 -top-20 h-48 w-48 rounded-full bg-[#E1848C]/20 blur-3xl" />
+
+          <div className="absolute -right-20 -bottom-20 h-48 w-48 rounded-full bg-[#C00645]/10 blur-3xl" />
+
+          <div className="relative flex h-[78px] items-center justify-between px-5 lg:px-8">
+
             {/* Logo */}
+
             <Link
               href="/"
-              className="group flex items-center gap-3"
               onClick={() => setOpen(false)}
+              className="group flex items-center gap-3"
             >
-              <div className="relative flex h-11 w-11 items-center justify-center overflow-hidden rounded-xl bg-gradient-to-br from-[#C84A18] to-[#8F2F0A] text-white shadow-lg shadow-orange-900/20 transition duration-300 group-hover:scale-105 group-hover:shadow-orange-900/30">
-                <CalendarDays className="relative z-10 h-5 w-5" />
+              <div className="relative flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-[#C00645] via-[#D05D65] to-[#E1848C] text-white shadow-xl shadow-rose-300/30 transition duration-500 group-hover:scale-110">
 
-                <div className="absolute -right-3 -top-3 h-8 w-8 rounded-full bg-[#F47721]/50 blur-md" />
+                <CalendarDays className="h-5 w-5 z-10" />
+
+                <div className="absolute inset-0 rounded-2xl bg-white/10 opacity-0 transition duration-500 group-hover:opacity-100" />
               </div>
 
-              <div className="flex flex-col">
-                <span className="font-[Manrope] text-lg font-extrabold tracking-tight text-[#2A211D] sm:text-xl">
+              <div>
+
+                <h1 className="font-heading text-xl font-extrabold tracking-tight text-[#31121D]">
+
                   Eventify
-                </span>
 
-                <span className="hidden text-[10px] font-medium uppercase tracking-[0.18em] text-[#A83B0B]/70 sm:block">
-                  Moments made memorable
-                </span>
+                </h1>
+
+                <p className="hidden text-[10px] uppercase tracking-[0.28em] text-[#C00645]/70 sm:block">
+
+                  Premium Event Booking
+
+                </p>
+
               </div>
+
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden items-center gap-1 md:flex">
+
+            <nav className="hidden items-center gap-2 lg:flex">
+
               {links.map((link) => (
+
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="group relative rounded-xl px-4 py-2.5 text-sm font-semibold text-[#665B55] transition-all duration-300 hover:bg-orange-900/[0.04] hover:text-[#A83B0B]"
+                  className="group relative rounded-2xl px-5 py-3 text-sm font-semibold text-[#654852] transition-all duration-300 hover:bg-white/70 hover:text-[#C00645]"
                 >
+
                   {link.label}
 
-                  <span className="absolute bottom-1.5 left-1/2 h-0.5 w-0 -translate-x-1/2 rounded-full bg-gradient-to-r from-[#C84A18] to-[#F47721] transition-all duration-300 group-hover:w-5/6" />
-                </Link>
-              ))}
-            </nav>
+                  <span className="absolute bottom-2 left-1/2 h-[3px] w-0 -translate-x-1/2 rounded-full bg-gradient-to-r from-[#C00645] to-[#E1848C] transition-all duration-300 group-hover:w-3/4" />
 
-            {/* Desktop Auth Buttons */}
-            <div className="hidden items-center gap-2.5 md:flex">
+                </Link>
+
+              ))}
+
+            </nav>
+                        {/* Desktop Buttons */}
+
+            <div className="hidden items-center gap-3 lg:flex">
+
               <Link
                 href="/auth/login"
-                className="rounded-xl px-4 py-2.5 text-sm font-semibold text-[#8F2F0A] transition-all duration-300 hover:bg-orange-900/[0.05]"
+                className="rounded-2xl border border-[#C00645]/10 bg-white/60 px-5 py-3 text-sm font-semibold text-[#C00645] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-[#C00645]/20 hover:bg-white hover:shadow-lg"
               >
                 Login
               </Link>
 
               <Link
                 href="/auth/signup"
-                className="group inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#C84A18] to-[#A83B0B] px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-orange-900/15 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-orange-900/25"
+                className="group inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-[#C00645] via-[#D05D65] to-[#E1848C] px-5 py-3 text-sm font-semibold text-white shadow-[0_18px_45px_rgba(192,6,69,.22)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_22px_55px_rgba(192,6,69,.28)]"
               >
-                <span>Sign Up</span>
+                <span>Get Started</span>
 
                 <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
+
             </div>
 
             {/* Mobile Menu Button */}
+
             <button
               type="button"
-              className="flex h-11 w-11 items-center justify-center rounded-xl border border-orange-900/10 bg-white/60 text-[#8F2F0A] transition-all duration-300 hover:bg-orange-900/[0.05] md:hidden"
               onClick={() => setOpen(!open)}
-              aria-label={open ? "Close menu" : "Open menu"}
-              aria-expanded={open}
+              aria-label={open ? "Close Menu" : "Open Menu"}
+              className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/50 bg-white/70 text-[#C00645] shadow-md backdrop-blur-xl transition-all duration-300 hover:bg-white lg:hidden"
             >
               {open ? (
                 <X className="h-5 w-5" />
@@ -96,55 +125,64 @@ export default function Navbar() {
                 <Menu className="h-5 w-5" />
               )}
             </button>
+
           </div>
+                    {/* Mobile Menu */}
 
-          {/* Mobile Menu */}
           {open && (
-            <div className="border-t border-orange-900/10 px-4 pb-4 pt-3 md:hidden">
-              <div className="rounded-xl border border-orange-900/[0.08] bg-white/60 p-2 backdrop-blur-md">
-                <nav className="flex flex-col gap-1">
-                  {links.map((link) => (
-                    <Link
-                      key={link.href}
-                      href={link.href}
-                      className="rounded-xl px-4 py-3 text-sm font-semibold text-[#665B55] transition-all duration-300 hover:bg-orange-900/[0.05] hover:text-[#A83B0B]"
-                      onClick={() => setOpen(false)}
-                    >
-                      {link.label}
-                    </Link>
-                  ))}
-                </nav>
+            <div className="border-t border-[#C00645]/10 bg-white/55 px-5 pb-5 pt-4 backdrop-blur-2xl lg:hidden">
 
-                <div className="my-2 h-px bg-orange-900/[0.08]" />
+              <nav className="flex flex-col gap-2">
 
-                <div className="grid grid-cols-2 gap-2">
+                {links.map((link) => (
                   <Link
-                    href="/auth/login"
-                    className="rounded-xl border border-orange-900/10 bg-white/70 px-4 py-3 text-center text-sm font-semibold text-[#8F2F0A] transition-all duration-300 hover:bg-orange-900/[0.04]"
+                    key={link.href}
+                    href={link.href}
                     onClick={() => setOpen(false)}
+                    className="rounded-2xl px-4 py-3 text-sm font-semibold text-[#654852] transition-all duration-300 hover:bg-white hover:text-[#C00645] hover:shadow-md"
                   >
-                    Login
+                    {link.label}
                   </Link>
+                ))}
 
-                  <Link
-                    href="/auth/signup"
-                    className="flex items-center justify-center gap-1.5 rounded-xl bg-gradient-to-r from-[#C84A18] to-[#A83B0B] px-4 py-3 text-center text-sm font-semibold text-white shadow-md shadow-orange-900/15 transition-all duration-300"
-                    onClick={() => setOpen(false)}
-                  >
-                    Sign Up
-                    <ArrowRight className="h-4 w-4" />
-                  </Link>
-                </div>
+              </nav>
+
+              <div className="my-5 h-px bg-gradient-to-r from-transparent via-[#C00645]/20 to-transparent" />
+
+              <div className="grid grid-cols-2 gap-3">
+
+                <Link
+                  href="/auth/login"
+                  onClick={() => setOpen(false)}
+                  className="rounded-2xl border border-[#C00645]/10 bg-white/70 px-4 py-3 text-center text-sm font-semibold text-[#C00645] transition-all duration-300 hover:bg-white hover:shadow-lg"
+                >
+                  Login
+                </Link>
+
+                <Link
+                  href="/auth/signup"
+                  onClick={() => setOpen(false)}
+                  className="inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-[#C00645] via-[#D05D65] to-[#E1848C] px-4 py-3 text-sm font-semibold text-white shadow-[0_15px_40px_rgba(192,6,69,.20)] transition-all duration-300 hover:-translate-y-1"
+                >
+                  Get Started
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+
               </div>
 
-              {/* Mobile Bottom Accent */}
-              <div className="mt-3 flex items-center justify-center gap-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-[#A83B0B]/60">
-                <Sparkles className="h-3 w-3" />
-                Create unforgettable moments
+              <div className="mt-5 flex items-center justify-center gap-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-[#C00645]/70">
+
+                <Sparkles className="h-3.5 w-3.5" />
+
+                Premium Event Experience
+
               </div>
+
             </div>
           )}
+
         </div>
+
       </div>
     </header>
   );

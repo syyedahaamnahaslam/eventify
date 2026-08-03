@@ -29,17 +29,17 @@ export default async function EventDetailPage({
 
   if (!event) {
     return (
-      <main className="flex min-h-[70vh] items-center justify-center bg-[#FAF8F5] px-4">
+      <main className="flex min-h-[70vh] items-center justify-center bg-neutral-bg px-4">
         <div className="glass-panel w-full max-w-lg rounded-3xl p-10 text-center">
-          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-[#A83B0B]/[0.07] text-[#A83B0B]">
+          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/[0.07] text-primary">
             <CalendarDays className="h-7 w-7" />
           </div>
 
-          <h1 className="mt-5 font-[Manrope] text-2xl font-extrabold text-[#2A211D]">
+          <h1 className="mt-5 font-heading text-2xl font-extrabold text-neutral-heading">
             Event not found
           </h1>
 
-          <p className="mt-3 text-sm leading-6 text-[#81766E]">
+          <p className="mt-3 text-sm leading-6 text-neutral-text">
             The event you&apos;re looking for may have been removed or is no
             longer available.
           </p>
@@ -70,18 +70,18 @@ export default async function EventDetailPage({
   });
 
   return (
-    <main className="min-h-screen overflow-hidden bg-[#FAF8F5] text-[#2A211D]">
+    <main className="min-h-screen overflow-hidden bg-neutral-bg text-neutral-heading">
       {/* =========================================================
           HERO / EVENT VISUAL
       ========================================================== */}
 
       <section className="relative px-3 pb-8 pt-4 sm:px-5 sm:pb-12 sm:pt-6">
         {/* Background Glows */}
-        <div className="hero-blob left-[-100px] top-32 h-[300px] w-[300px] bg-[#F47721]" />
+        <div className="hero-blob left-[-100px] top-32 h-[300px] w-[300px] bg-rose-accent" />
 
-        <div className="hero-blob right-[-120px] top-0 h-[350px] w-[350px] bg-[#A83B0B]" />
+        <div className="hero-blob right-[-120px] top-0 h-[350px] w-[350px] bg-primary" />
 
-        <div className="relative mx-auto max-w-7xl overflow-hidden rounded-[2rem] border border-orange-900/10 bg-[#F3ECE5] shadow-[0_25px_80px_rgba(70,35,15,0.08)] sm:rounded-[2.5rem]">
+        <div className="relative mx-auto max-w-7xl overflow-hidden rounded-[2rem] border border-primary/10 bg-rose-soft shadow-[0_25px_80px_rgba(192,6,69,0.08)] sm:rounded-[2.5rem]">
           {/* Back Navigation */}
           <div className="absolute left-5 top-5 z-20 sm:left-8 sm:top-8">
             <Link
@@ -106,15 +106,15 @@ export default async function EventDetailPage({
               />
 
               {/* Image Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#241006]/90 via-[#241006]/20 to-[#241006]/30" />
+              <div className="absolute inset-0 bg-gradient-to-t from-neutral-heading/90 via-neutral-heading/20 to-neutral-heading/30" />
 
-              {/* Orange Glow */}
-              <div className="absolute -bottom-24 -left-20 h-72 w-72 rounded-full bg-[#F47721]/20 blur-[100px]" />
+              {/* Glow */}
+              <div className="absolute -bottom-24 -left-20 h-72 w-72 rounded-full bg-primary/20 blur-[100px]" />
 
               {/* Category */}
               <div className="absolute left-6 top-20 sm:left-8">
                 <span className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/15 px-4 py-2 text-xs font-bold capitalize text-white shadow-lg backdrop-blur-xl">
-                  <Sparkles className="h-3.5 w-3.5 text-[#FFD0A8]" />
+                  <Sparkles className="h-3.5 w-3.5 text-rose-blush" />
                   {event.category}
                 </span>
               </div>
@@ -125,18 +125,18 @@ export default async function EventDetailPage({
                   Hosted by {event.host}
                 </p>
 
-                <h1 className="mt-3 max-w-xl font-[Manrope] text-4xl font-extrabold leading-[1.08] tracking-[-0.035em] text-white sm:text-5xl lg:text-6xl">
+                <h1 className="mt-3 max-w-xl font-heading text-4xl font-extrabold leading-[1.08] tracking-[-0.035em] text-white sm:text-5xl lg:text-6xl">
                   {event.title}
                 </h1>
 
                 <div className="mt-5 flex flex-wrap gap-2">
                   <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-2 text-xs font-medium text-white/80 backdrop-blur-md">
-                    <MapPin className="h-3.5 w-3.5 text-[#FFD0A8]" />
+                    <MapPin className="h-3.5 w-3.5 text-rose-blush" />
                     {event.city}
                   </div>
 
                   <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-2 text-xs font-medium text-white/80 backdrop-blur-md">
-                    <Users className="h-3.5 w-3.5 text-[#FFD0A8]" />
+                    <Users className="h-3.5 w-3.5 text-rose-blush" />
                     Up to {event.capacity} guests
                   </div>
                 </div>
@@ -147,105 +147,105 @@ export default async function EventDetailPage({
                 INFO SIDE
             ====================================================== */}
 
-            <div className="relative flex flex-col justify-center bg-[#F3ECE5] p-6 sm:p-8 lg:p-12">
+            <div className="relative flex flex-col justify-center bg-rose-soft p-6 sm:p-8 lg:p-12">
               {/* Decorative Grid */}
               <div
                 className="pointer-events-none absolute inset-0 opacity-[0.025]"
                 style={{
                   backgroundImage:
-                    "linear-gradient(rgba(100,50,20,1) 1px, transparent 1px), linear-gradient(90deg, rgba(100,50,20,1) 1px, transparent 1px)",
+                    "linear-gradient(rgba(192,6,69,1) 1px, transparent 1px), linear-gradient(90deg, rgba(192,6,69,1) 1px, transparent 1px)",
                   backgroundSize: "45px 45px",
                 }}
               />
 
               <div className="relative">
                 {/* Small Label */}
-                <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-[#A83B0B]">
-                  <span className="h-1.5 w-1.5 rounded-full bg-[#F47721]" />
+                <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-primary">
+                  <span className="h-1.5 w-1.5 rounded-full bg-rose-accent" />
                   Event Details
                 </div>
 
                 {/* Description */}
-                <p className="mt-5 text-sm leading-7 text-[#756A63] sm:text-base sm:leading-8">
+                <p className="mt-5 text-sm leading-7 text-neutral-text sm:text-base sm:leading-8">
                   {event.description}
                 </p>
 
                 {/* Info Cards */}
                 <div className="mt-8 grid gap-3 sm:grid-cols-2">
                   {/* Date */}
-                  <div className="rounded-2xl border border-orange-900/10 bg-white/60 p-4 shadow-sm backdrop-blur-xl">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#A83B0B]/[0.07] text-[#A83B0B]">
+                  <div className="rounded-2xl border border-primary/10 bg-white/60 p-4 shadow-sm backdrop-blur-xl">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/[0.07] text-primary">
                       <CalendarDays className="h-5 w-5" />
                     </div>
 
-                    <p className="mt-4 text-[10px] font-bold uppercase tracking-[0.14em] text-[#A09289]">
+                    <p className="mt-4 text-[10px] font-bold uppercase tracking-[0.14em] text-[#9B7A84]">
                       Date
                     </p>
 
-                    <p className="mt-1 text-sm font-bold leading-5 text-[#514840]">
+                    <p className="mt-1 text-sm font-bold leading-5 text-neutral-heading">
                       {formattedDate}
                     </p>
                   </div>
 
                   {/* Location */}
-                  <div className="rounded-2xl border border-orange-900/10 bg-white/60 p-4 shadow-sm backdrop-blur-xl">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#C84A18]/[0.07] text-[#C84A18]">
+                  <div className="rounded-2xl border border-primary/10 bg-white/60 p-4 shadow-sm backdrop-blur-xl">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary-700/[0.07] text-primary-700">
                       <MapPin className="h-5 w-5" />
                     </div>
 
-                    <p className="mt-4 text-[10px] font-bold uppercase tracking-[0.14em] text-[#A09289]">
+                    <p className="mt-4 text-[10px] font-bold uppercase tracking-[0.14em] text-[#9B7A84]">
                       Location
                     </p>
 
-                    <p className="mt-1 text-sm font-bold leading-5 text-[#514840]">
+                    <p className="mt-1 text-sm font-bold leading-5 text-neutral-heading">
                       {event.venue}
                     </p>
 
-                    <p className="mt-0.5 text-xs text-[#897D74]">
+                    <p className="mt-0.5 text-xs text-neutral-text">
                       {event.city}
                     </p>
                   </div>
 
                   {/* Capacity */}
-                  <div className="rounded-2xl border border-orange-900/10 bg-white/60 p-4 shadow-sm backdrop-blur-xl">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#F47721]/[0.08] text-[#B86A00]">
+                  <div className="rounded-2xl border border-primary/10 bg-white/60 p-4 shadow-sm backdrop-blur-xl">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-rose-accent/[0.12] text-[#B0364F]">
                       <Users className="h-5 w-5" />
                     </div>
 
-                    <p className="mt-4 text-[10px] font-bold uppercase tracking-[0.14em] text-[#A09289]">
+                    <p className="mt-4 text-[10px] font-bold uppercase tracking-[0.14em] text-[#9B7A84]">
                       Capacity
                     </p>
 
-                    <p className="mt-1 text-sm font-bold text-[#514840]">
+                    <p className="mt-1 text-sm font-bold text-neutral-heading">
                       Up to {event.capacity} guests
                     </p>
                   </div>
 
                   {/* Availability */}
-                  <div className="rounded-2xl border border-orange-900/10 bg-white/60 p-4 shadow-sm backdrop-blur-xl">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#A83B0B]/[0.07] text-[#A83B0B]">
+                  <div className="rounded-2xl border border-primary/10 bg-white/60 p-4 shadow-sm backdrop-blur-xl">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/[0.07] text-primary">
                       <Clock3 className="h-5 w-5" />
                     </div>
 
-                    <p className="mt-4 text-[10px] font-bold uppercase tracking-[0.14em] text-[#A09289]">
+                    <p className="mt-4 text-[10px] font-bold uppercase tracking-[0.14em] text-[#9B7A84]">
                       Availability
                     </p>
 
-                    <p className="mt-1 text-sm font-bold text-[#514840]">
+                    <p className="mt-1 text-sm font-bold text-neutral-heading">
                       Booking Available
                     </p>
                   </div>
                 </div>
 
                 {/* Price + CTA */}
-                <div className="mt-8 rounded-2xl border border-orange-900/10 bg-white/70 p-5 shadow-[0_15px_40px_rgba(70,35,15,0.06)] backdrop-blur-xl sm:p-6">
+                <div className="mt-8 rounded-2xl border border-primary/10 bg-white/70 p-5 shadow-[0_15px_40px_rgba(192,6,69,0.06)] backdrop-blur-xl sm:p-6">
                   <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
                     <div>
-                      <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-[#A09289]">
+                      <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-[#9B7A84]">
                         Starting from
                       </p>
 
-                      <p className="mt-1 font-[Manrope] text-2xl font-extrabold text-[#A83B0B]">
+                      <p className="mt-1 font-heading text-2xl font-extrabold text-primary">
                         {formattedPrice}
                       </p>
                     </div>
@@ -263,13 +263,13 @@ export default async function EventDetailPage({
 
                 {/* Trust Points */}
                 <div className="mt-6 grid gap-3 sm:grid-cols-2">
-                  <div className="flex items-center gap-2 text-xs font-medium text-[#81766E]">
-                    <CheckCircle2 className="h-4 w-4 text-[#C84A18]" />
+                  <div className="flex items-center gap-2 text-xs font-medium text-neutral-text">
+                    <CheckCircle2 className="h-4 w-4 text-primary" />
                     Easy booking process
                   </div>
 
-                  <div className="flex items-center gap-2 text-xs font-medium text-[#81766E]">
-                    <ShieldCheck className="h-4 w-4 text-[#C84A18]" />
+                  <div className="flex items-center gap-2 text-xs font-medium text-neutral-text">
+                    <ShieldCheck className="h-4 w-4 text-primary" />
                     Secure booking experience
                   </div>
                 </div>
@@ -288,15 +288,15 @@ export default async function EventDetailPage({
           <div className="grid gap-5 md:grid-cols-3">
             {/* Highlight 1 */}
             <div className="card group p-6">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#A83B0B]/[0.07] text-[#A83B0B] transition-all duration-300 group-hover:bg-[#A83B0B] group-hover:text-white">
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/[0.07] text-primary transition-all duration-300 group-hover:bg-primary group-hover:text-white">
                 <CalendarDays className="h-5 w-5" />
               </div>
 
-              <h3 className="mt-5 font-[Manrope] text-base font-bold text-[#2A211D]">
+              <h3 className="mt-5 font-heading text-base font-bold text-neutral-heading">
                 Plan with confidence
               </h3>
 
-              <p className="mt-2 text-sm leading-6 text-[#81766E]">
+              <p className="mt-2 text-sm leading-6 text-neutral-text">
                 Get all the important event details in one place before making
                 your booking decision.
               </p>
@@ -304,15 +304,15 @@ export default async function EventDetailPage({
 
             {/* Highlight 2 */}
             <div className="card group p-6">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#C84A18]/[0.07] text-[#C84A18] transition-all duration-300 group-hover:bg-[#C84A18] group-hover:text-white">
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary-700/[0.07] text-primary-700 transition-all duration-300 group-hover:bg-primary-700 group-hover:text-white">
                 <Users className="h-5 w-5" />
               </div>
 
-              <h3 className="mt-5 font-[Manrope] text-base font-bold text-[#2A211D]">
+              <h3 className="mt-5 font-heading text-base font-bold text-neutral-heading">
                 Designed for your guests
               </h3>
 
-              <p className="mt-2 text-sm leading-6 text-[#81766E]">
+              <p className="mt-2 text-sm leading-6 text-neutral-text">
                 Choose an event package with the right capacity and experience
                 for your special occasion.
               </p>
@@ -320,15 +320,15 @@ export default async function EventDetailPage({
 
             {/* Highlight 3 */}
             <div className="card group p-6">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#F47721]/[0.08] text-[#B86A00] transition-all duration-300 group-hover:bg-[#F47721] group-hover:text-white">
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-rose-accent/[0.12] text-[#B0364F] transition-all duration-300 group-hover:bg-rose-accent group-hover:text-white">
                 <ShieldCheck className="h-5 w-5" />
               </div>
 
-              <h3 className="mt-5 font-[Manrope] text-base font-bold text-[#2A211D]">
+              <h3 className="mt-5 font-heading text-base font-bold text-neutral-heading">
                 Simple and secure
               </h3>
 
-              <p className="mt-2 text-sm leading-6 text-[#81766E]">
+              <p className="mt-2 text-sm leading-6 text-neutral-text">
                 Enjoy a smooth booking journey with a clean interface and
                 secure account experience.
               </p>
@@ -342,9 +342,9 @@ export default async function EventDetailPage({
       ========================================================== */}
 
       <section className="relative overflow-hidden px-4 pb-20 sm:px-6 lg:px-8">
-        <div className="relative mx-auto max-w-7xl overflow-hidden rounded-[2rem] bg-gradient-to-br from-[#8F2F0A] via-[#A83B0B] to-[#C84A18] px-6 py-14 shadow-[0_25px_70px_rgba(143,47,10,0.18)] sm:px-10 sm:py-16">
+        <div className="relative mx-auto max-w-7xl overflow-hidden rounded-[2rem] bg-gradient-to-br from-primary-700 via-primary to-rose-accent px-6 py-14 shadow-[0_25px_70px_rgba(192,6,69,0.18)] sm:px-10 sm:py-16">
           {/* Glows */}
-          <div className="absolute -left-20 -top-20 h-64 w-64 rounded-full bg-[#F47721]/30 blur-[90px]" />
+          <div className="absolute -left-20 -top-20 h-64 w-64 rounded-full bg-rose-accent/30 blur-[90px]" />
 
           <div className="absolute -bottom-24 -right-20 h-72 w-72 rounded-full bg-black/20 blur-[100px]" />
 
@@ -353,7 +353,7 @@ export default async function EventDetailPage({
               <Sparkles className="h-5 w-5" />
             </div>
 
-            <h2 className="mt-5 font-[Manrope] text-2xl font-extrabold text-white sm:text-3xl lg:text-4xl">
+            <h2 className="mt-5 font-heading text-2xl font-extrabold text-white sm:text-3xl lg:text-4xl">
               Ready to make this moment special?
             </h2>
 
@@ -365,7 +365,7 @@ export default async function EventDetailPage({
             {/* FIXED: eventId */}
             <Link
               href={`/booking?eventId=${event.id}`}
-              className="group mt-7 inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3.5 text-sm font-bold text-[#8F2F0A] shadow-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
+              className="group mt-7 inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3.5 text-sm font-bold text-primary-700 shadow-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
             >
               Continue to Booking
               <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />

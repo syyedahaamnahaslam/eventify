@@ -1,29 +1,26 @@
 "use client";
 
 import { useState } from "react";
+import { useSearchParams } from "next/navigation";
 import Link from "next/link";
-import {
-  ArrowRight,
-  CheckCircle2,
-  LockKeyhole,
-  Mail,
-  ShieldCheck,
-  Sparkles,
-} from "lucide-react";
 import { supabase } from "@/lib/supabase";
 
 export default function LoginPage() {
+  const searchParams = useSearchParams();
+  const redirectTo = searchParams.get("redirect") || "/dashboard";
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
+
     setLoading(true);
     setError("");
 
-    // Supabase auth — will work once env vars are set
     const { error } = await supabase.auth.signInWithPassword({
       email,
       password,
@@ -35,246 +32,137 @@ export default function LoginPage() {
       return;
     }
 
-    // Redirect on success
-    window.location.href = "/dashboard";
+    window.location.href = redirectTo;
   };
 
   return (
-    <main className="relative min-h-screen overflow-hidden bg-[#FAF8F5] text-[#2A211D]">
-      {/* =========================================================
-          BACKGROUND DECORATION
-      ========================================================== */}
+    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-br from-[#FFF7F8] via-white to-[#FCECEF] px-4 py-16">
 
-      <div className="hero-blob left-[-150px] top-20 h-[350px] w-[350px] bg-[#F47721]" />
+      {/* Background Glow */}
 
-      <div className="hero-blob right-[-160px] bottom-[-80px] h-[400px] w-[400px] bg-[#A83B0B]" />
+      <div className="absolute -left-40 top-0 h-[420px] w-[420px] rounded-full bg-[#92003A]/10 blur-[140px]" />
 
-      <div className="pointer-events-none absolute left-1/2 top-1/2 h-[650px] w-[650px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-orange-900/[0.025]" />
+      <div className="absolute -right-40 bottom-0 h-[420px] w-[420px] rounded-full bg-[#C00645]/10 blur-[140px]" />
 
-      <div className="relative flex min-h-screen items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
-        <div className="grid w-full max-w-6xl overflow-hidden rounded-[2rem] border border-orange-900/[0.08] bg-white/40 shadow-[0_30px_100px_rgba(70,35,15,0.08)] backdrop-blur-xl lg:grid-cols-2">
-          {/* =====================================================
-              LEFT / BRAND PANEL
-          ====================================================== */}
+      <div className="relative w-full max-w-md">
 
-          <div className="relative hidden overflow-hidden bg-gradient-to-br from-[#8F2F0A] via-[#A83B0B] to-[#C84A18] p-10 lg:flex lg:min-h-[650px] lg:flex-col lg:justify-between xl:p-14">
-            {/* Decorative Glows */}
-            <div className="absolute -left-24 -top-24 h-72 w-72 rounded-full bg-[#F47721]/30 blur-[90px]" />
+        <div className="rounded-[34px] border border-white/40 bg-white/70 p-8 shadow-[0_30px_80px_rgba(146,0,58,.12)] backdrop-blur-2xl">
 
-            <div className="absolute -bottom-24 -right-24 h-80 w-80 rounded-full bg-black/20 blur-[100px]" />
+          <div className="mb-8 text-center">
 
-            {/* Decorative Circle */}
-            <div className="pointer-events-none absolute right-[-80px] top-[-80px] h-64 w-64 rounded-full border border-white/10" />
+            <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-[#92003A] via-[#B0004A] to-[#C00645] text-3xl text-white shadow-xl">
 
-            <div className="pointer-events-none absolute bottom-[-120px] left-[-100px] h-72 w-72 rounded-full border border-white/10" />
+              🔐
 
-            <div className="relative">
-              {/* Logo / Brand */}
-              <div className="flex items-center gap-3">
-                <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/20 bg-white/10 text-white shadow-xl backdrop-blur-md">
-                  <Sparkles className="h-5 w-5" />
-                </div>
-
-                <div>
-                  <p className="font-[Manrope] text-lg font-extrabold text-white">
-                    Eventify
-                  </p>
-
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-white/50">
-                    Event Experiences
-                  </p>
-                </div>
-              </div>
-
-              {/* Main Text */}
-              <div className="mt-24 max-w-md">
-                <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-white/60">
-                  <span className="h-1.5 w-1.5 rounded-full bg-[#FFD0A8]" />
-                  Welcome back
-                </p>
-
-                <h2 className="mt-5 font-[Manrope] text-4xl font-extrabold leading-[1.08] tracking-[-0.04em] text-white xl:text-5xl">
-                  Your next
-                  <span className="block text-[#FFD0A8]">
-                    unforgettable
-                  </span>
-                  moment awaits.
-                </h2>
-
-                <p className="mt-6 text-sm leading-7 text-white/65">
-                  Sign in to manage your bookings, explore curated events, and
-                  keep every special moment organized in one beautiful space.
-                </p>
-              </div>
             </div>
 
-            {/* Benefits */}
-            <div className="relative space-y-4">
-              <div className="flex items-center gap-3 text-sm text-white/75">
-                <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-white/10">
-                  <CheckCircle2 className="h-4 w-4 text-[#FFD0A8]" />
-                </div>
+            <h1 className="font-heading text-3xl font-bold text-[#2A0D18]">
 
-                <span>Manage all your event bookings</span>
-              </div>
+              Welcome Back
 
-              <div className="flex items-center gap-3 text-sm text-white/75">
-                <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-white/10">
-                  <ShieldCheck className="h-4 w-4 text-[#FFD0A8]" />
-                </div>
+            </h1>
 
-                <span>Secure and simple booking experience</span>
-              </div>
-            </div>
+            <p className="mt-3 text-sm leading-7 text-[#7A5A64]">
+
+              Login to your account and continue booking premium events.
+
+            </p>
+
           </div>
 
-          {/* =====================================================
-              RIGHT / LOGIN FORM
-          ====================================================== */}
+          <form
+            onSubmit={handleLogin}
+            className="space-y-5"
+          >
 
-          <div className="relative flex min-h-[650px] items-center justify-center bg-[#FAF8F5]/75 p-6 sm:p-10 lg:p-12 xl:p-16">
-            {/* Subtle Grid */}
-            <div
-              className="pointer-events-none absolute inset-0 opacity-[0.025]"
-              style={{
-                backgroundImage:
-                  "linear-gradient(rgba(100,50,20,1) 1px, transparent 1px), linear-gradient(90deg, rgba(100,50,20,1) 1px, transparent 1px)",
-                backgroundSize: "45px 45px",
-              }}
-            />
-
-            <div className="relative w-full max-w-md">
-              {/* Mobile Brand */}
-              <div className="mb-10 flex items-center justify-center gap-3 lg:hidden">
-                <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#A83B0B] text-white shadow-lg">
-                  <Sparkles className="h-5 w-5" />
-                </div>
-
-                <div>
-                  <p className="font-[Manrope] text-lg font-extrabold text-[#2A211D]">
-                    Eventify
-                  </p>
-
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#A09289]">
-                    Event Experiences
-                  </p>
-                </div>
+            {error && (
+              <div className="rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-medium text-red-700">
+                {error}
               </div>
+            )}
 
-              {/* Heading */}
-              <div className="text-center sm:text-left">
-                <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-[#A83B0B]/[0.07] text-[#A83B0B] sm:mx-0">
-                  <LockKeyhole className="h-5 w-5" />
-                </div>
+            <div>
 
-                <p className="mt-6 text-xs font-bold uppercase tracking-[0.18em] text-[#A83B0B]">
-                  Account Login
-                </p>
+              <label className="mb-2 block text-sm font-semibold text-[#2A0D18]">
 
-                <h1 className="mt-2 font-[Manrope] text-3xl font-extrabold tracking-[-0.035em] text-[#2A211D] sm:text-4xl">
-                  Welcome back
-                </h1>
+                Email Address
 
-                <p className="mt-3 text-sm leading-6 text-[#81766E]">
-                  Login to manage your bookings and continue planning memorable
-                  experiences.
-                </p>
-              </div>
+              </label>
 
-              {/* Login Form */}
-              <form onSubmit={handleLogin} className="mt-8 space-y-5">
-                {/* Error */}
-                {error && (
-                  <div className="rounded-2xl border border-red-900/10 bg-red-50/80 px-4 py-3 text-sm leading-6 text-red-700 shadow-sm">
-                    {error}
-                  </div>
-                )}
+              <input
+                required
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="input-field"
+                placeholder="you@example.com"
+              />
 
-                {/* Email */}
-                <div>
-                  <label className="mb-2 block text-xs font-bold uppercase tracking-[0.12em] text-[#514840]">
-                    Email Address
-                  </label>
-
-                  <div className="relative">
-                    <Mail className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#A09289]" />
-
-                    <input
-                      required
-                      type="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      className="w-full rounded-2xl border border-orange-900/[0.10] bg-white/60 py-3.5 pl-11 pr-4 text-sm text-[#2A211D] outline-none backdrop-blur-md transition-all duration-300 placeholder:text-[#B0A69E] focus:border-[#A83B0B]/40 focus:bg-white/80 focus:ring-4 focus:ring-[#A83B0B]/[0.06]"
-                      placeholder="you@example.com"
-                    />
-                  </div>
-                </div>
-
-                {/* Password */}
-                <div>
-                  <div className="mb-2 flex items-center justify-between">
-                    <label className="block text-xs font-bold uppercase tracking-[0.12em] text-[#514840]">
-                      Password
-                    </label>
-
-                    <button
-                      type="button"
-                      className="text-xs font-semibold text-[#A83B0B] transition-colors hover:text-[#7E2D08]"
-                    >
-                      Forgot password?
-                    </button>
-                  </div>
-
-                  <div className="relative">
-                    <LockKeyhole className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#A09289]" />
-
-                    <input
-                      required
-                      type="password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      className="w-full rounded-2xl border border-orange-900/[0.10] bg-white/60 py-3.5 pl-11 pr-4 text-sm text-[#2A211D] outline-none backdrop-blur-md transition-all duration-300 placeholder:text-[#B0A69E] focus:border-[#A83B0B]/40 focus:bg-white/80 focus:ring-4 focus:ring-[#A83B0B]/[0.06]"
-                      placeholder="••••••••"
-                    />
-                  </div>
-                </div>
-
-                {/* Login Button */}
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="group flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-[#8F2F0A] to-[#C84A18] px-6 py-4 text-sm font-bold text-white shadow-[0_15px_35px_rgba(143,47,10,0.18)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_20px_45px_rgba(143,47,10,0.25)] disabled:cursor-not-allowed disabled:opacity-60"
-                >
-                  {loading ? "Logging in..." : "Login to Account"}
-
-                  {!loading && (
-                    <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                  )}
-                </button>
-              </form>
-
-              {/* Signup */}
-              <div className="mt-7 text-center">
-                <p className="text-sm text-[#81766E]">
-                  Don&apos;t have an account?{" "}
-                  <Link
-                    href="/auth/signup"
-                    className="font-bold text-[#A83B0B] transition-colors hover:text-[#7E2D08] hover:underline"
-                  >
-                    Create an account
-                  </Link>
-                </p>
-              </div>
-
-              {/* Security Note */}
-              <div className="mt-8 flex items-center justify-center gap-2 border-t border-orange-900/[0.07] pt-6 text-xs text-[#A09289]">
-                <ShieldCheck className="h-4 w-4 text-[#A83B0B]" />
-                Your account information is securely protected
-              </div>
             </div>
+
+            <div>
+
+              <label className="mb-2 block text-sm font-semibold text-[#2A0D18]">
+
+                Password
+
+              </label>
+
+              <input
+                required
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="input-field"
+                placeholder="••••••••"
+              />
+
+            </div>
+                        <button
+              type="submit"
+              disabled={loading}
+              className="btn-primary w-full py-4 text-base font-semibold"
+            >
+              {loading ? "Logging in..." : "Login"}
+            </button>
+
+          </form>
+
+          <div className="mt-8">
+
+            <div className="mb-6 flex items-center gap-3">
+
+              <div className="h-px flex-1 bg-[#92003A]/10" />
+
+              <span className="text-xs font-medium uppercase tracking-[0.18em] text-[#8B6A74]">
+                OR
+              </span>
+
+              <div className="h-px flex-1 bg-[#92003A]/10" />
+
+            </div>
+
+            <div className="text-center">
+
+              <p className="text-sm text-[#7A5A64]">
+                Don't have an account?
+              </p>
+
+              <Link
+                href="/auth/signup"
+                className="mt-4 inline-flex w-full items-center justify-center rounded-2xl border border-[#92003A]/10 bg-white/70 px-6 py-4 font-semibold text-[#92003A] transition-all duration-300 hover:-translate-y-1 hover:border-[#92003A]/20 hover:bg-white hover:shadow-[0_18px_40px_rgba(146,0,58,.12)]"
+              >
+                Create New Account
+              </Link>
+
+            </div>
+
           </div>
+
         </div>
+
       </div>
-    </main>
+
+    </div>
   );
 }
